@@ -7,11 +7,19 @@ class Hangman
     @body = " "
     @l_leg = " "
     @r_leg = " "
+    @secret = random_word
+  end
+
+  def random_word
+    words.sample
+  end
+
+  def words
+    ["blah", "foo", "bar"]
   end
 
   def board
     "_____|    \n|/   |\n|   #{@head} \n|   #{@l_arm}#{@body}#{@r_arm} \n|    #{@l_leg} #{@r_leg} \n|    \n--------"
-
   end
 
 
@@ -28,8 +36,10 @@ end
 # body parts need color
 
 
+
 h = Hangman.new
 puts h.board
+puts h.inspect
 
 
 
