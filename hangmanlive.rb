@@ -1,13 +1,28 @@
 class Hangman
 
   def initialize
-    @head = " "
-    @l_arm = " "
-    @r_arm = " "
-    @body = " "
-    @l_leg = " "
-    @r_leg = " "
-    @secret = random_word
+    @head       = " "
+    @l_arm      = " "
+    @r_arm      = " "
+    @body       = " "
+    @l_leg      = " "
+    @r_leg      = " "
+    @secret     = random_word
+    @characters = empty_characters
+  end
+
+  def empty_characters
+    Array.new(@secret.length, "-")
+    # a = []
+    # @secret.length.times {a << "_"}
+  end
+
+  def characters
+    @characters
+  end
+
+  def guess
+    @characters.join
   end
 
   def random_word
@@ -19,16 +34,20 @@ class Hangman
   end
 
   def board
-    "_____|    \n|/   |\n|   #{@head} \n|   #{@l_arm}#{@body}#{@r_arm} \n|    #{@l_leg} #{@r_leg} \n|    \n--------"
+    "_____|    \n|/   |\n|   #{@head} \n|   #{@l_arm}#{@body}#{@r_arm} \n|    #{@l_leg} #{@r_leg} \n|    \n________"
   end
 
+  def blanks
+
+  end
 
 end
 
 
 #Draw and print the board
 # secret word
-# take a guess and compare it to the secret word
+# ***take a guess and compare it to the secret word
+# make concept of blank spaces
 # remember guesses
 # remember which parts have been added
 # it should know when the game is won or lost
@@ -39,7 +58,8 @@ end
 
 h = Hangman.new
 puts h.board
-puts h.inspect
+puts h.guess
+#h.check_letter(input)
 
 
 
