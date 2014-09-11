@@ -17,6 +17,14 @@ class Hangman
     # @secret.length.times {a << "_"}
   end
 
+  def make_guess(guessed_letter)
+    @secret.chars.each_with_index do |letter, index|
+      if guessed_letter == letter
+        @characters[index] = letter
+      end
+    end
+  end
+
   def characters
     @characters
   end
@@ -30,23 +38,20 @@ class Hangman
   end
 
   def words
-    ["blah", "foo", "bar"]
+    ["blarg", "fooa", "bars"]
   end
 
   def board
     "_____|    \n|/   |\n|   #{@head} \n|   #{@l_arm}#{@body}#{@r_arm} \n|    #{@l_leg} #{@r_leg} \n|    \n________"
   end
 
-  def blanks
-
-  end
 
 end
 
 
 #Draw and print the board
 # secret word
-# ***take a guess and compare it to the secret word
+# ***take a guess and compare it to the secret word, update the characters with the guessed letter
 # make concept of blank spaces
 # remember guesses
 # remember which parts have been added
@@ -58,6 +63,8 @@ end
 
 h = Hangman.new
 puts h.board
+#puts h.guess
+h.make_guess("a")
 puts h.guess
 #h.check_letter(input)
 
