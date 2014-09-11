@@ -9,28 +9,50 @@ class Hangman
     @r_leg      = " "
     @secret     = random_word
     @characters = empty_characters
+    @guesses    = []
   end
 
+#creates a new array of empty characters based on the length of the chosen word
   def empty_characters
     Array.new(@secret.length, "-")
     # a = []
     # @secret.length.times {a << "_"}
   end
 
+  def game_over
+    words.each do |answer|
+      if guess == answer
+        puts "ou win. The answer is: #{answer}!"
+        return true
+      end
+    end
+    return false
+  end
+
+  def guessed(guessed_letter)
+    @guesses << guessed_letter
+  end
+
+
+#checks secret word to see if the letters match, then uses the index of the secret array and puts the letters on the characters array
   def make_guess(guessed_letter)
+    #this will exit the method and not do the stuff below it
+    return false if @guesses.include?(guessed_letter)
     @secret.chars.each_with_index do |letter, index|
       if guessed_letter == letter
         @characters[index] = letter
       end
     end
+    @guesses << guessed_letter
+  end
+
+#prints the contents of the array
+  def guess
+    @characters.join
   end
 
   def characters
     @characters
-  end
-
-  def guess
-    @characters.join
   end
 
   def random_word
@@ -38,13 +60,12 @@ class Hangman
   end
 
   def words
-    ["blarg", "fooa", "bars"]
+    ["blarrg", "fooa", "barss"]
   end
 
   def board
     "_____|    \n|/   |\n|   #{@head} \n|   #{@l_arm}#{@body}#{@r_arm} \n|    #{@l_leg} #{@r_leg} \n|    \n________"
   end
-
 
 end
 
@@ -59,115 +80,15 @@ end
 # it should know if a guess is already been guessed
 # body parts need color
 
+def run
+  h = Hangman.new
+    while h.game_over == false
+      puts h.board
+      puts h.guess
+      puts "What letter do you want to guess?\n"
+      guess = gets.chomp
+      h.make_guess(guess)
+    end
+end
 
-
-h = Hangman.new
-puts h.board
-#puts h.guess
-h.make_guess("a")
-puts h.guess
-#h.check_letter(input)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-#
-#
-# #.sample picks out a random item from an array and prints it out
-#
-# # class Game
-# #
-# #   def initalize
-# #     puts ["|     _________",
-# #       "|     |/      |", "|     |      ","|     |      ", "|     |       ", "|     |      ", "|     |", "| ____|___"]
-# #   end
-#
-#   class Hangman
-#     attr_accessor :blank, :word, :exposedword
-#
-#     def initialize(wordbank)
-#       @blank = "_"
-#       @word = wordbank.sample.chars.to_a
-#       @exposedword = blanks.chars.to_a
-#     end
-#
-#
-#     def test
-#       puts @word.to_s
-#     end
-#
-#     def charactercount
-#       @word.length
-#     end
-#
-#     def blanks
-#       @blank * charactercount
-#     end
-#
-#
-#     def guess(input)
-#       @word.each_with_index do |c, i|
-#         if input == c
-#           @exposedword[i] = c
-#           puts @exposedword.to_s
-#         else
-#           puts "Guess again"
-#         end
-#       end
-#     end
-#
-#
-#
-#     # def guessing(input)
-#     #   @word.each do |letter|
-#     #     if input == letter
-#     #       puts input
-#     #     else
-#     #       puts "_"
-#     #     end
-#     #   end
-#     # end
-#   end
-# #end
-#
-# wordbank = ["Russian", "English", "Spanish", "French", "Japanese"]
-#
-#
-# mygame = Hangman.new(wordbank)
-#
-# mygame.test
-# puts "Guess a letter"
-# input = gets.chomp
-# mygame.guess(input)
-# input2 = gets.chomp
-#
-#
-#
-# #puts mygame.blanks[4]
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# #
+run
