@@ -1,3 +1,5 @@
+require "colorize"
+
 class Hangman
 
   def initialize
@@ -90,32 +92,32 @@ class Hangman
 
   def addbody
     if @wrongguesses.length == 1
-      @head = "()"
+      @head = "()".colorize(:light_blue)
     elsif @wrongguesses.length == 2
-      @head = "()"
-      @l_arm = "\\"
+      @head = "()".colorize(:light_blue)
+      @l_arm = "\\".colorize(:red)
     elsif @wrongguesses.length == 3
-      @head = "()"
-      @l_arm = "\\"
-      @body = "|"
+      @head = "()".colorize(:light_blue)
+      @l_arm = "\\".colorize(:red)
+      @body = "|".colorize(:white)
     elsif @wrongguesses.length == 4
-      @head = "()"
-      @l_arm = "\\"
-      @body = "|"
-      @r_arm = "/"
+      @head = "()".colorize(:light_blue)
+      @l_arm = "\\".colorize(:red)
+      @body = "|".colorize(:white)
+      @r_arm = "/".colorize(:red)
     elsif @wrongguesses.length == 5
-      @head = "()"
-      @l_arm = "\\"
-      @body = "|"
-      @r_arm = "/"
-      @l_leg = "/"
+      @head = "()".colorize(:light_blue)
+      @l_arm = "\\".colorize(:red)
+      @body = "|".colorize(:white)
+      @r_arm = "/".colorize(:red)
+      @l_leg = "/".colorize(:light_blue)
     elsif @wrongguesses.length == 6
-      @head = "()"
-      @l_arm = "\\"
-      @body = "|"
-      @r_arm = "/"
-      @l_leg = "/"
-      @r_leg = "\\"
+      @head = "()".colorize(:light_blue)
+      @l_arm = "\\".colorize(:red)
+      @body = "|".colorize(:white)
+      @r_arm = "/".colorize(:red)
+      @l_leg = "/".colorize(:light_blue)
+      @r_leg = "\\".colorize(:_light_blue)
     end
   end
 
