@@ -85,7 +85,7 @@ class Hangman
   end
 
   def words
-    ["blarrg", "fooa", "barss"]
+    ["justice", "latina", "feminism", "culture", "knowledge", "mujerista", "communist"]
   end
 
   def addbody
